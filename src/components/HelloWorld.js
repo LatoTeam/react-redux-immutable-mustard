@@ -17,7 +17,7 @@ class HelloWorld extends Component {
   }
 
   onTitleChange(event) {
-    let book = this.state.book;
+    const book = this.state.book;
     book.title = event.target.value;
 
     this.setState({
@@ -39,7 +39,7 @@ class HelloWorld extends Component {
         <h1>Hello World!</h1>
         {this.props.books.map(this.booksRow)}
         <div>
-          <input type="book" onChange={this.onTitleChange} />
+          <input type="text" onChange={this.onTitleChange} />
           <input type="submit" onClick={this.onSave} />
         </div>
       </div>
