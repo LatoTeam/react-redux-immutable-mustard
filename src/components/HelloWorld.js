@@ -3,13 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as helloActions from '../actions/helloActions';
 
+// This is an example of a Container Component, connected with the Redux Store.
 class HelloWorld extends Component {
   constructor(props, context) {
     super(props, context);
-
-    this.state = {
-      book: { title: '' }
-    };
   }
 
   booksRow(book, index) {
