@@ -1,0 +1,30 @@
+/* Icon Fonts */
+
+@if settings('use-icon-fonts') {
+  // @font-face {
+  //   font-family: $icon-font-name;
+  //   src: url('../fonts/font.eot');
+  //   font-weight: normal;
+  //   font-style: normal;
+  // }
+
+  [class^="icon-"], [class*=" icon-"] {
+    font-family: $icon-font-name;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    @if settings('use-font-smooth') {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+
+  @each $name, $char in $icons {
+    .icon-#{$name}:before {
+      content: $char;
+    }
+  }
+}

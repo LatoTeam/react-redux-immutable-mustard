@@ -1,0 +1,23 @@
+/* Form Module */
+
+// Remove default fieldset styles.
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+textarea, select {
+  padding: 6px 10px; // The 6px vertically centers text on FF, ignored by Webkit
+  box-shadow: none;
+}
+
+textarea, input {
+  appearance: none;
+}
+
+textarea {
+  resize: none;
+  height: auto;
+  min-height: 50px;
+}
