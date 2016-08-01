@@ -1,8 +1,8 @@
 import * as types from './actionTypes';
 
-export function createHelloText(text) {
+export function createBook(book) {
   return {
-    type: types.CREATE_TEXT,
-    text
+    type: types.CREATE_BOOK,
+    book
   };
 }

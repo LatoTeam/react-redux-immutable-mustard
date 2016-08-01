@@ -12,43 +12,35 @@ class HelloWorld extends Component {
     this.onSave = this.onSave.bind(this);
 
     this.state = {
-      text: ''
+      book: { title: '' }
     };
   }
 
   onTitleChange(event) {
-    let text = this.state.text;
-    text = event.target.value;
+    let book = this.state.book;
+    book.title = event.target.value;
 
     this.setState({
-      text: text
+      book
     });
   }
 
   onSave() {
-    this.props.actions.createHelloText(this.state.text);
+    this.props.actions.createBook(this.state.book);
   }
 
-  textsRow(text, index) {
-    let finalText = '';
-    for(var txt in text) {
-       finalText = finalText + text[txt];
-    }
-    return <div key={index}>{finalText}</div>
+  booksRow(book, index) {
+    return <div key={index}>{book.title}</div>;
   }
 
   render() {
     return (
       <div>
         <h1>Hello World!</h1>
-        {this.props.texts.map(this.textsRow)}
+        {this.props.books.map(this.booksRow)}
         <div>
-          <input
-            type="text"
-            onChange={this.onTitleChange} />
-          <input
-            type="submit"
-            onClick={this.onSave} />
+          <input type="book" onChange={this.onTitleChange} />
+          <input type="submit" onClick={this.onSave} />
         </div>
       </div>
     );
@@ -57,7 +49,7 @@ class HelloWorld extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    texts: state.texts
+    books: state.books
   };
 }
 
@@ -69,7 +61,7 @@ function mapDispatchToProps(dispatch) {
 
 HelloWorld.propTypes = {
   actions: PropTypes.object.isRequired,
-  texts: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HelloWorld);
