@@ -7,26 +7,9 @@ class HelloWorld extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.onTitleChange = this.onTitleChange.bind(this);
-    this.onSave = this.onSave.bind(this);
-    this.onSave = this.onSave.bind(this);
-
     this.state = {
       book: { title: '' }
     };
-  }
-
-  onTitleChange(event) {
-    const book = this.state.book;
-    book.title = event.target.value;
-
-    this.setState({
-      book
-    });
-  }
-
-  onSave() {
-    this.props.actions.createBook(this.state.book);
   }
 
   booksRow(book, index) {
@@ -35,13 +18,9 @@ class HelloWorld extends Component {
 
   render() {
     return (
-      <div>
+      <div className="content">
         <h1>Hello World!</h1>
         {this.props.books.map(this.booksRow)}
-        <div>
-          <input type="text" onChange={this.onTitleChange} />
-          <input type="submit" onClick={this.onSave} />
-        </div>
       </div>
     );
   }

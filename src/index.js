@@ -4,11 +4,13 @@ import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import routes from './config/routes';
+import { loadBooks } from './actions/helloActions';
 
 // if you want to active the Redux dev tools, make sure to include
 // window.devToolsExtension && window.devToolsExtension() as a parameter of the
 // configureStore function.
 const store = configureStore();
+store.dispatch(loadBooks());
 
 render(
   <Provider store={store}>
