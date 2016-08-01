@@ -24,15 +24,6 @@
   @return mix(white, $color, $percent);
 }
 
-// Assets helper functions
-@function _img($filename) {
-  @return url('../img/'#{$filename});
-}
-
-@function _icon($filename) {
-  @return url('../icons/'#{$filename});
-}
-
 // Managing Z-Layers & icon font names
 @function z($layer: "base") {
   @if not map-has-key($z-layers, $layer) {
@@ -429,20 +420,19 @@ $pseudo-phprefix: "::-webkit-input-placeholder" "::-moz-placeholder" ":-ms-input
   }
 }
 
-// Write currencies the right way
-%currency {
-  position: relative;
-  &:before {
-    content: '$';
-    position: relative;
-    left: 0;
+// Get a gradient background
+@mixin gradientBg($start_color, $end_color, $orientation) {
+  background: $start_color;
+  @if $orientation == vertical {
+    background: -webkit-linear-gradient(top, $start_color, $end_color);
+    background: linear-gradient(to bottom, $start_color, $end_color);
+  } @else if $orientation == horizontal {
+    background: -webkit-linear-gradient(left, $start_color, $end_color);
+    background: linear-gradient(to right, $start_color, $end_color);
+  } @else {
+    background: -webkit-radial-gradient(center, ellipse cover, $start_color, $end_color);
+    background: radial-gradient(ellipse at center, $start_color, $end_color);
   }
-}
-.usd %currency:before {
-  content: '$';
-}
-.eur %currency:before {
-  content: '\20AC';
 }
 
 // Media Query Mixins
@@ -473,80 +463,4 @@ $pseudo-phprefix: "::-webkit-input-placeholder" "::-moz-placeholder" ":-ms-input
   only screen and (min-resolution: $ratio * 1dppx) {
     @content;
   }
-}
-
-
-// Center an element (need position: relative to the container)
-@mixin centerElement($xy) {
-  position: absolute;
-  @if $xy == xy {
-    left: 50%;
-    top: 50%;
-    bottom: auto;
-    right: auto;
-    transform: translate(-50%, -50%);
-  }
-  @else if $xy == x {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
-  @else if $xy == y {
-    top: 50%;
-    bottom: auto;
-    transform: translateY(-50%);
-  }
-}
-
-// Get a gradient background
-@mixin gradientBackground($start_color, $end_color, $orientation) {
-    background: $start_color;
-
-    @if $orientation == vertical {
-      background: -webkit-linear-gradient(top, $start_color, $end_color);
-      background: linear-gradient(to bottom, $start_color, $end_color);
-    } @else if $orientation == horizontal {
-      background: -webkit-linear-gradient(left, $start_color, $end_color);
-      background: linear-gradient(to right, $start_color, $end_color);
-    } @else {
-      background: -webkit-radial-gradient(center, ellipse cover, $start_color, $end_color);
-      background: radial-gradient(ellipse at center, $start_color, $end_color);
-    }
-}
-
-// Set the element as a triangle
-@mixin triangle($direction, $size, $color){
-  content: '';
-  display: block;
-  position: absolute;
-  height: 0; width: 0;
-  @if ($direction == up){
-    border-bottom: $size solid $color;
-    border-left: 1/2*$size solid transparent;
-    border-right: 1/2*$size solid transparent;
-  }
-  @else if ($direction == down){
-    border-top: $size solid $color;
-    border-left: 1/2*$size solid transparent;
-    border-right: 1/2*$size solid transparent;
-  }
-  @else if ($direction == left){
-    border-top: 1/2*$size solid transparent;
-    border-bottom: 1/2*$size solid transparent;
-    border-right: $size solid $color;
-  }
-  @else if ($direction == right){
-    border-top: 1/2*$size solid transparent;
-    border-bottom: 1/2*$size solid transparent;
-    border-left: $size solid $color;
-  }
-}
-
-// Set before/after element ready to be used as graphic element
-@mixin prepareBeAfElement($content: '', $width: 1px, $height: 1px, $color: #fff) {
-  content: $content;
-  position: absolute;
-  width: $width;
-  height: $height;
-  background: $color;
 }
