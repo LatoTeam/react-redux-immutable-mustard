@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as helloActions from '../actions/helloActions';
+import IconHeart from '../assets/icons/icon.inline.svg'
 
 // This is an example of a Container Component, connected with the Redux Store.
 class HelloWorld extends Component {
@@ -18,6 +19,7 @@ class HelloWorld extends Component {
       <div className="content">
         <h1>Hello World!</h1>
         {this.props.books.map(this.booksRow)}
+        <IconHeart />
       </div>
     );
   }

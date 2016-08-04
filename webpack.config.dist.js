@@ -47,7 +47,8 @@ module.exports = validate({
     loaders: [
       {test: /\.js$/, loader: "babel-loader", exclude: /node_modules/},
       {test: /\.scss$/, loader: SassExtractPlugin.extract('style', 'css!postcss!sass')},
-      {test: /.*\.(gif|png|jpe?g|svg)$/i, loaders:
+      {test: /\.inline.svg$/, loader: 'babel!svg-react'},
+      {test: /\.jpe?g$|\.gif$|\.png$|^(?!.*\.inline\.svg$).*\.svg$/, loaders:
         ['file-loader?name=img/img-[hash:6].[ext]', 'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false']
       }
     ]
