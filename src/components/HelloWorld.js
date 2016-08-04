@@ -23,13 +23,13 @@ class HelloWorld extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+const mapStateToProps = (state, ownProps) => {
   return {
     books: state.books
   };
-}
+};
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators(helloActions, dispatch)
   };
