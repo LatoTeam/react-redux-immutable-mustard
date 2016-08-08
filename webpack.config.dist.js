@@ -28,8 +28,8 @@ module.exports = validate({
     SassExtractPlugin,
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
-    'process.env': {
-        'NODE_ENV': JSON.stringify('production')
+      'process.env': {
+          'NODE_ENV': JSON.stringify('production')
       }
     }),
     new webpack.optimize.DedupePlugin(),
@@ -37,7 +37,11 @@ module.exports = validate({
       compress: {
         screw_ie8: true,
         warnings: false,
-      }
+      },
+      mangle: false,
+      sourcemap: false,
+      minimize: true,
+      mangle: { except: ['$super', '$', 'exports', 'require', '$q', '$ocLazyLoad'] }
     })
   ],
   module: {
