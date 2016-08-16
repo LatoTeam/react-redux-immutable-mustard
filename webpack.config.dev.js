@@ -8,6 +8,11 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   filename: 'index.html',
   inject: 'body'
 });
+
+const Dashboard = require('webpack-dashboard');
+const DashboardPlugin = require('webpack-dashboard/plugin');
+const dashboard = new Dashboard();
+
 const validate = require('webpack-validator');
 
 module.exports = validate({
@@ -27,6 +32,7 @@ module.exports = validate({
   },
   devServer: {
     hot: true,
+    quiet: true,
     contentBase: './src'
   },
   resolve: {
@@ -40,7 +46,8 @@ module.exports = validate({
     HTMLWebpackPluginConfig,
     SassExtractPlugin,
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new DashboardPlugin(dashboard.setData)
   ],
   module: {
     preLoaders: [
