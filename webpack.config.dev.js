@@ -22,7 +22,7 @@ module.exports = validate({
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server', // Tries HMR but doesn't reload the browser upon errors.
-    //'webpack/hot/dev-server', // Tries HMR and reloads the browser upon errors.
+    // 'webpack/hot/dev-server', // Tries HMR and reloads the browser upon errors.
     './src/index.js',
     './src/styles/app.scss'
   ],
@@ -51,13 +51,13 @@ module.exports = validate({
   ],
   module: {
     preLoaders: [
-      {test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/}
+      { test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/ }
     ],
     loaders: [
-      {test: /\.js$/, loaders: ['react-hot-loader', 'babel-loader'], exclude: /node_modules/},
-      {test: /\.scss$/, loader: SassExtractPlugin.extract('style', 'css!postcss!sass')},
-      {test: /\.inline.svg$/, loader: 'babel!svg-react'},
-      {test: /\.jpe?g$|\.gif$|\.png$|^(?!.*\.inline\.svg$).*\.svg$/, loaders:
+      { test: /\.js$/, loaders: ['react-hot-loader', 'babel-loader'], exclude: /node_modules/ },
+      { test: /\.scss$/, loader: SassExtractPlugin.extract('style', 'css!postcss!sass') },
+      { test: /\.inline.svg$/, loader: 'babel!svg-react' },
+      { test: /\.jpe?g$|\.gif$|\.png$|^(?!.*\.inline\.svg$).*\.svg$/, loaders:
         ['file-loader?name=img/img-[hash:6].[ext]', 'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false']
       }
     ]

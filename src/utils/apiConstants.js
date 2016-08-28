@@ -1,5 +1,9 @@
-const devSuffix = 'localhost:3000';
-const stagingSuffix = '102.168.0.1:8001';
-const prodSuffix = 'website.com';
+let suffix;
 
-export const url = `http://${devSuffix}/api/v1`;
+if (process.env.NODE_ENV === 'production') {
+  suffix = '102.168.0.1:8001';
+} else {
+  suffix = 'localhost:3000';
+}
+
+export const url = `http://${suffix}/api/v1`;

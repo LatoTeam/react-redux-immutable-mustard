@@ -29,16 +29,15 @@ module.exports = validate({
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-          'NODE_ENV': JSON.stringify('production')
+        'NODE_ENV': JSON.stringify('production')
       }
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         screw_ie8: true,
-        warnings: false,
+        warnings: false
       },
-      mangle: false,
       sourcemap: false,
       minimize: true,
       mangle: { except: ['$super', '$', 'exports', 'require', '$q', '$ocLazyLoad'] }
@@ -46,13 +45,13 @@ module.exports = validate({
   ],
   module: {
     preLoaders: [
-      {test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/}
+      { test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/ }
     ],
     loaders: [
-      {test: /\.js$/, loader: "babel-loader", exclude: /node_modules/},
-      {test: /\.scss$/, loader: SassExtractPlugin.extract('style', 'css!postcss!sass')},
-      {test: /\.inline.svg$/, loader: 'babel!svg-react'},
-      {test: /\.jpe?g$|\.gif$|\.png$|^(?!.*\.inline\.svg$).*\.svg$/, loaders:
+      { test: /\.js$/, loader: "babel-loader", exclude: /node_modules/ },
+      { test: /\.scss$/, loader: SassExtractPlugin.extract('style', 'css!postcss!sass') },
+      { test: /\.inline.svg$/, loader: 'babel!svg-react' },
+      { test: /\.jpe?g$|\.gif$|\.png$|^(?!.*\.inline\.svg$).*\.svg$/, loaders:
         ['file-loader?name=img/img-[hash:6].[ext]', 'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false']
       }
     ]

@@ -9,7 +9,7 @@ export function loadBooksSuccess(books) {
 }
 
 export function loadBooks() {
-  return function (dispatch) {
+  return function requestBooks(dispatch) {
     return MockApi.getAllBooks().then(books => {
       dispatch(loadBooksSuccess(books));
     }).catch(error => {

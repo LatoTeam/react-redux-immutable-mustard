@@ -2,13 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as helloActions from '../actions/helloActions';
-import IconHeart from '../assets/icons/icon.inline.svg'
+import IconHeart from '../assets/icons/icon.inline.svg';
 
 // This is an example of a Container Component, connected with the Redux Store.
 class HelloWorld extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
 
   booksRow(book, index) {
     return <div key={index}>{book.title}</div>;
@@ -25,17 +22,13 @@ class HelloWorld extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    books: state.books
-  };
-};
+const mapStateToProps = (state, ownProps) => ({
+  books: state.books
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    actions: bindActionCreators(helloActions, dispatch)
-  };
-}
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(helloActions, dispatch)
+});
 
 HelloWorld.propTypes = {
   actions: PropTypes.object.isRequired,
